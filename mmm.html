@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arkat Khassanov | AI & Computer Vision Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            text-align: center;
+            padding: 30px 0 20px 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 40px;
+        }
+
+        .navbar a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #555;
+            font-weight: 400;
+        }
+
+        .navbar a:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            display: flex;
+            padding: 0 20px 50px 20px;
+            gap: 50px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            flex-shrink: 0;
+        }
+
+        .profile-pic {
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 25px;
+            border: 1px solid #eee;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sidebar h1 {
+            font-size: 24px;
+            margin: 10px 0 5px 0;
+            font-weight: 500;
+        }
+
+        .sidebar .tagline {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .contact-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .contact-list i {
+            width: 20px;
+            margin-right: 10px;
+            color: #444;
+        }
+
+        .contact-list a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+        }
+
+        .section-header {
+            font-size: 21px;
+            font-weight: bold;
+            margin: 30px 0 15px 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .section-header:first-child {
+            margin-top: 0;
+        }
+
+        .bio-text {
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .red-note {
+            color: #b30000;
+            font-weight: bold;
+            margin: 25px 0;
+            font-size: 13px;
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+        }
+
+        ul {
+            padding-left: 18px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .visitor-map {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 850px) {
+            .container { flex-direction: column; align-items: center; }
+            .sidebar { width: 100%; text-align: center; }
+            .profile-pic { margin: 0 auto 20px auto; }
+            .contact-list li { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="#">Homepage</a>
+        <a href="#about">About Me</a>
+        <a href="#honors">Honors</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile-pic">
+                <img src="дж.jpg" alt="Arkat Khassanov">
+            </div>
+            <h1>Arkat Khassanov</h1>
+            <div class="tagline">
+                Building AI & Computer Vision Systems | Robotics & ML Enthusiast | Startup-Driven
+            </div>
+            
+            <ul class="contact-list">
+                <li><i class="fa-solid fa-location-dot"></i> Kazakhstan</li>
+                <li><i class="fa-solid fa-envelope"></i> <a href="mailto:your-email@example.com">Email</a></li>
+                <li><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/arkat-khassanov-a2b1313a1/">LinkedIn</a></li>
+                <li><i class="fa-brands fa-instagram"></i> <a href="https://www.instagram.com/neimbaa/">Instagram</a></li>
+                <li><i class="fa-brands fa-github"></i> <a href="https://github.com/Arka04bro">GitHub</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <section id="about">
+                <h2 class="section-header">About Me</h2>
+                <div class="bio-text">
+                    I am a developer specializing in <strong>Artificial Intelligence, Computer Vision, and Robotics</strong>. My work spans from creating ensemble learning models for environmental monitoring to designing bionic prostheses and satellite systems. I am deeply involved in the startup ecosystem and competitive programming.
+                </div>
+
+                <h3>Professional Membership & Education</h3>
+                <ul>
+                    <li><strong>Program Committee Member:</strong> YFS (Youth Future Society)</li>
+                    <li><strong>Samsung Innovation Campus (SIC):</strong> Advanced training in AI and Neural Network architectures.</li>
+                    <li><strong>Coach:</strong> RQ Aktobe Team (World Robot Olympiad).</li>
+                </ul>
+
+                <div class="red-note">
+                    [Note]: I am open to collaboration on high-impact AI/Robotics projects and hardware startups.
+                </div>
+            </section>
+
+            <section id="honors">
+                <h2 class="section-header">Honors and Awards</h2>
+                <ul>
+                    <li><a href="https://www.instagram.com/startupnation.asia/">Startup Nation (1st Place)</a></li>
+                    <li><a href="https://www.instagram.com/nomadspark.kz/">Next Startup (1st Place)</a></li>
+                    <li><a href="https://www.instagram.com/p/DLKJdgoCqoC/">AIGA CASE COMPETITION (3rd Place)</a></li>
+                    <li><a href="https://www.instagram.com/p/DO8yJFrAnS8/?img_index=1">NRG First National ML Challenge (1st Place)</a></li>
+                    <li><a href="https://www.instagram.com/alga.business_/">Alga Business Pitch Day (1st Place)</a></li>
+                    <li><a href="https://www.instagram.com/wso.space/">WSO World Space Olympiad (1st Place)</a></li>
+                    <li><a href="https://astanahub.com/en/event/kazrockets-satellite-design-tournament-2025/">KSDT Satellite Design Tournament (1st Place)</a></li>
+                    <li><a href="https://aica.uz">AICA Artificial Intelligence Challenge (1st Place)</a></li>
+                    <li><a href="https://www.instagram.com/p/DNk0UQKMOU8/">Generative Pitch (Top 3)</a></li>
+                    <li><a href="https://www.instagram.com/photon.ftc_fgc/">FTC/FRC/FLL Main Coder & Finalist</a></li>
+                    <li><a href="https://www.instagram.com/reels/DQB7COuCtKc/">International STEM Olympiad (4th Place/87 teams)</a></li>
+                    <li><a href="#">City Informatics Olympiad 2025 (1st Place)</a></li>
+                    <li><a href="#">NASA Space Apps Challenge (Best Hardware Project)</a></li>
+                    <li><a href="#">Bubble Accelerator Winner (2024)</a></li>
+                    <li><a href="#">First Republican ML-Challenge Pro-Energy (Winner)</a></li>
+                    <li><a href="#">Kazrobotics Coach (2nd Place)</a></li>
+                </ul>
+            </section>
+
+            <section id="projects">
+                <h2 class="section-header">Research & Projects</h2>
+                <ul>
+                    <li><a href="https://github.com/Arka04bro/NeuroForge">NeuroForge:</a> First UTM System in Kazakhstan.</li>
+                    <li><a href="https://threads.com/@_.addil._/post/DFfxciyonA9">Bionic Prosthesis:</a> EEG-based brainwave impulse control.</li>
+                    <li><a href="https://threads.com/@_.addil._/post/DFftnAyI0-l">Underwater Drone:</a> Neural network for human identification.</li>
+                    <li><a href="https://threads.com/@neimbaa/post/DCT6NN4Iult">Ensemble Learning Models:</a> Forest fire monitoring system.</li>
+                    <li><a href="https://github.com/Arka04bro/spacehack">Space Aircraft AI:</a> Code for autonomous space flight.</li>
+                    <li><a href="https://threads.com/@_.addil._/post/DFiXLXKOgis">Plasma Generator:</a> Hardware construction and PVC melting test.</li>
+                    <li><a href="https://threads.com/@_.addil._/post/DFf8Pg5OMwG">Marine Lighthouse:</a> Rogue wave prediction system.</li>
+                </ul>
+            </section>
+
+            <section id="publications">
+                <h2 class="section-header">Publications</h2>
+                <ul>
+                    <li><a href="https://www.hackster.io/addilzhan/monitoring-of-industrial-emissions-using-the-gauss-method-c4f867">Hackster.io: Industrial Emissions Monitoring</a></li>
+                    <li><a href="https://medium.com/@g.adi.288123/according-to-2019-data-kazakhstan-is-among-the-top-25-countries-in-terms-of-industrial-emissions-83bd50c6c268">Medium: Air Quality Analysis in Kazakhstan</a></li>
+                    <li><a href="https://dev.to/addil/according-to-2019-data-kazakhstan-is-among-the-top-25-countries-in-terms-of-industrial-emissions-3b4k">Dev.to: Industrial Data Case Study</a></li>
+                </ul>
+            </section>
+
+            <div class="visitor-map">
+                <h2 class="section-header">Visitor Map</h2>
+                <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=arkat_profile"></script>
+            </div>
+
+            <footer style="margin-top: 50px; padding: 20px 0; border-top: 1px solid #eee; font-size: 12px; color: #888; text-align: center;">
+                &copy; 2026 Arkat Khassanov. All Rights Reserved.
+            </footer>
+        </main>
+    </div>
+
+</body>
+</html>
