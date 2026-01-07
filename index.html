@@ -4,24 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arkat Khassanov | Portfolio</title>
+    
+    <link rel="icon" type="image/png" href="your-favicon-url.png">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
     <style>
         :root {
-            --bg-color: #ffffff;
+            --bg-color: rgba(255, 255, 255, 0.9);
             --text-color: #333333;
             --secondary-text: #666666;
             --link-color: #0056b3;
             --border-color: #eeeeee;
             --nav-hover: #000000;
+            --canvas-bg: #f0f2f5;
         }
 
         [data-theme="dark"] {
-            --bg-color: #1a1a1a;
+            --bg-color: rgba(26, 26, 26, 0.85);
             --text-color: #e0e0e0;
             --secondary-text: #aaaaaa;
             --link-color: #4da3ff;
             --border-color: #333333;
             --nav-hover: #ffffff;
+            --canvas-bg: #0a0a0a;
+        }
+
+        /* Canvas background styling */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: var(--canvas-bg);
         }
 
         body {
@@ -29,10 +48,9 @@
             font-size: 14px;
             line-height: 1.6;
             color: var(--text-color);
-            background-color: var(--bg-color);
             margin: 0;
             padding: 0;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.3s;
         }
 
         .navbar {
@@ -40,7 +58,11 @@
             padding: 30px 0 20px 0;
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 40px;
-            position: relative;
+            position: sticky;
+            top: 0;
+            background: var(--bg-color);
+            backdrop-filter: blur(10px);
+            z-index: 100;
         }
 
         .navbar a {
@@ -55,12 +77,11 @@
             text-decoration: underline;
         }
 
-        /* Dark Mode Toggle Button */
         #theme-toggle {
             position: absolute;
             right: 20px;
             top: 30px;
-            background: none;
+            background: var(--bg-color);
             border: 1px solid var(--border-color);
             color: var(--text-color);
             padding: 5px 10px;
@@ -75,33 +96,27 @@
             display: flex;
             padding: 0 20px 50px 20px;
             gap: 50px;
+            background: var(--bg-color);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
 
-        .sidebar {
-            width: 240px;
-            flex-shrink: 0;
-        }
+        .sidebar { width: 240px; flex-shrink: 0; padding-top: 40px; }
 
         .profile-pic {
-            width: 190px;
-            height: 190px;
+            width: 190px; height: 190px;
             border-radius: 50%;
             overflow: hidden;
             margin-bottom: 25px;
-            border: 1px solid var(--border-color);
+            border: 3px solid var(--border-color);
         }
 
-        .profile-pic img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .profile-pic img { width: 100%; height: 100%; object-fit: cover; }
 
-        .sidebar h1 {
-            font-size: 24px;
-            margin: 10px 0 5px 0;
-            font-weight: 500;
-        }
+        .sidebar h1 { font-size: 24px; margin: 10px 0 5px 0; font-weight: 500; }
 
         .sidebar .tagline {
             font-size: 13px;
@@ -110,77 +125,29 @@
             line-height: 1.4;
         }
 
-        .contact-list {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-        }
+        .contact-list { list-style: none; padding: 0; margin: 20px 0; }
+        .contact-list li { margin-bottom: 10px; display: flex; align-items: center; font-size: 13px; }
+        .contact-list i { width: 20px; margin-right: 10px; }
+        .contact-list a { text-decoration: none; color: var(--text-color); }
 
-        .contact-list li {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            font-size: 13px;
-        }
-
-        .contact-list i {
-            width: 20px;
-            margin-right: 10px;
-        }
-
-        .contact-list a {
-            text-decoration: none;
-            color: var(--text-color);
-        }
-
-        .main-content {
-            flex-grow: 1;
-        }
+        .main-content { flex-grow: 1; padding-top: 40px; }
 
         .section-header {
-            font-size: 21px;
-            font-weight: bold;
+            font-size: 21px; font-weight: bold;
             margin: 30px 0 15px 0;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 5px;
         }
 
-        .section-header:first-child { margin-top: 0; }
-
-        .red-note {
-            color: #b30000;
-            font-weight: bold;
-            margin: 25px 0;
-            font-size: 13px;
-        }
-
-        h3 {
-            font-size: 15px;
-            font-weight: bold;
-            margin: 20px 0 10px 0;
-        }
-
+        .red-note { color: #b30000; font-weight: bold; margin: 25px 0; font-size: 13px; }
+        h3 { font-size: 15px; font-weight: bold; margin: 20px 0 10px 0; }
         ul { padding-left: 18px; margin-bottom: 20px; }
         li { margin-bottom: 8px; }
-
-        a {
-            color: var(--link-color);
-            text-decoration: none;
-        }
-
-        a:hover { text-decoration: underline; }
-
-        footer {
-            margin-top: 50px;
-            padding: 20px 0;
-            border-top: 1px solid var(--border-color);
-            font-size: 12px;
-            color: var(--secondary-text);
-            text-align: center;
-        }
+        a { color: var(--link-color); text-decoration: none; }
+        footer { margin-top: 50px; padding: 20px 0; font-size: 12px; color: var(--secondary-text); text-align: center; }
 
         @media (max-width: 850px) {
-            .container { flex-direction: column; align-items: center; }
+            .container { flex-direction: column; align-items: center; width: 90%; }
             .sidebar { width: 100%; text-align: center; }
             .profile-pic { margin: 0 auto 20px auto; }
             .contact-list li { justify-content: center; }
@@ -189,6 +156,8 @@
     </style>
 </head>
 <body>
+
+    <canvas id="bg-canvas"></canvas>
 
     <nav class="navbar">
         <a href="#">Homepage</a>
@@ -222,59 +191,37 @@
             <section id="about">
                 <h2 class="section-header">About Me</h2>
                 <div class="bio-text">
-                    I am a developer and engineer focused on building <strong>AI & Computer Vision Systems</strong>. My expertise lies in Machine Learning integration for Robotics and autonomous flight. I actively participate in global hackathons and lead technical teams in the startup ecosystem.
+                    I am a developer and engineer focused on building <strong>AI & Computer Vision Systems</strong>. My expertise lies in Machine Learning integration for Robotics and autonomous flight.
                 </div>
 
-                <h3>Service & Professional Activities</h3>
+                <h3>Professional Activities</h3>
                 <ul>
-                    <li><strong>Program Committee Member:</strong> YFS (Youth Founders Summit) - Entrepreneurship summit with 6 month accelerator , Selective with 1% acceptance rate</li>
-                    <li><strong>Samsung Innovation Campus (SIC):</strong> Advanced artificial intelligence and neural network research training.</li>
-                    <li><strong>Competition Coach:</strong> Lead Mentor for RQ Aktobe (World Robot Olympiad) and Kazrobotics teams.</li>
+                    <li><strong>Program Committee:</strong> YFS (Youth Founders Summit) - 1% acceptance rate accelerator.</li>
+                    <li><strong>Samsung Innovation Campus:</strong> Advanced AI & Neural Networks research.</li>
+                    <li><strong>Competition Coach:</strong> Lead Mentor for World Robot Olympiad (WRO) teams.</li>
                 </ul>
-
                 <div class="red-note">[Note]: Looking for R&D collaborations in AI and hardware robotics.</div>
             </section>
 
             <section id="honors">
                 <h2 class="section-header">Honors and Awards</h2>
                 <ul>
-                    <li><a href="https://www.instagram.com/startupnation.asia/" target="_blank">Startup Nation (1st Place)</a></li>
-                    <li><a href="https://www.instagram.com/nomadspark.kz/" target="_blank">Next Startup (1st Place)</a></li>
-                    <li><a href="https://www.instagram.com/p/DLKJdgoCqoC/" target="_blank">AIGA CASE COMPETITION (3rd Place)</a></li>
-                    <li><a href="https://www.instagram.com/p/DO8yJFrAnS8/?img_index=1" target="_blank">NRG First National ML Challenge (1st Place)</a></li>
-                    <li><a href="https://www.instagram.com/alga.business_/" target="_blank">Alga Business / Pitch Day (1st Place)</a></li>
-                    <li><a href="https://www.instagram.com/wso.space/" target="_blank">WSO World Space Olympiad (1st Place)</a></li>
-                    <li><a href="https://astanahub.com/en/event/kazrockets-satellite-design-tournament-2025/" target="_blank">KSDT Satellite Design Tournament (1st Place)</a></li>
-                    <li><a href="https://aica.uz" target="_blank">AICA AI Challenge Uzbekistan (1st Place)</a></li>
-                    <li><a href="https://www.instagram.com/p/DNk0UQKMOU8/" target="_blank">Generative Pitch (Top 3)</a></li>
-                    <li><a href="https://www.instagram.com/photon.ftc_fgc/" target="_blank">FTC/FRC/FLL Main Coder & National Winner</a></li>
-                    <li><a href="https://www.instagram.com/reels/DQB7COuCtKc/" target="_blank">International STEM Olympiad (4th Place / 87 teams)</a></li>
-                    <li><a href="https://www.instagram.com/p/DCT6NN4Iult" target="_blank">Nuris Hardware Challenge Finalist</a></li>
-                    <li><a href="#" target="_blank">City Informatics Olympiad (1st Place, 2025)</a></li>
-                    <li><a href="#" target="_blank">NASA Space Apps Challenge Winner (Hardware)</a></li>
-                    <li><a href="#" target="_blank">AITU iCode Round 1 Winner</a></li>
+                    <li>Startup Nation (1st Place)</li>
+                    <li>Next Startup (1st Place)</li>
+                    <li>NRG First National ML Challenge (1st Place)</li>
+                    <li>WSO World Space Olympiad (1st Place)</li>
+                    <li>KSDT Satellite Design Tournament (1st Place)</li>
+                    <li>AICA AI Challenge Uzbekistan (1st Place)</li>
                 </ul>
             </section>
 
             <section id="projects">
                 <h2 class="section-header">Research & Projects</h2>
                 <ul>
-                    <li><a href="https://github.com/Arka04bro/NeuroForge" target="_blank">NeuroForge:</a> First UTM drone management system in Kazakhstan.</li>
-                    <li><a href="https://threads.com/@_.addil._/post/DFfxciyonA9" target="_blank">Bionic Prosthesis:</a> Brainwave-controlled (EEG) artificial limb.</li>
-                    <li><a href="https://threads.com/@_.addil._/post/DFftnAyI0-l" target="_blank">Underwater Drone:</a> AI vision for human identification under water.</li>
-                    <li><a href="https://github.com/Arka04bro/Smoke_Detection-" target="_blank">Smoke Detection:</a> YOLOv5 pre-trained model on Raspberry Pi/ESP32.</li>
-                    <li><a href="https://threads.com/@neimbaa/post/DCT6NN4Iult" target="_blank">Ensemble Learning Models:</a> Forest fire monitoring project.</li>
-                    <li><a href="https://github.com/Arka04bro/intellectual_helmet_for_pilots" target="_blank">Intellectual Helmet:</a> VR system and smart sensor for pilots.</li>
-                    <li><a href="https://threads.com/@_.addil._/post/DFkLs6wOWoW" target="_blank">LoRa Ra01 Testing:</a> New interface for long-range communication.</li>
-                </ul>
-            </section>
-
-            <section id="publications">
-                <h2 class="section-header">Publications</h2>
-                <ul>
-                    <li><strong>Hackster.io:</strong> <a href="https://www.hackster.io/addilzhan/monitoring-of-industrial-emissions-using-the-gauss-method-c4f867" target="_blank">Monitoring of Industrial Emissions via Gauss Method</a></li>
-                    <li><strong>Medium:</strong> <a href="https://medium.com/@g.adi.288123/according-to-2019-data-kazakhstan-is-among-the-top-25-countries-in-terms-of-industrial-emissions-83bd50c6c268" target="_blank">Kazakhstan Industrial Data Study</a></li>
-                    <li><strong>Dev.to:</strong> <a href="https://dev.to/addil/according-to-2019-data-kazakhstan-is-among-the-top-25-countries-in-terms-of-industrial-emissions-3b4k" target="_blank">Emission Analysis for 2019 Data</a></li>
+                    <li><strong>NeuroForge:</strong> First UTM drone management system in Kazakhstan.</li>
+                    <li><strong>Bionic Prosthesis:</strong> Brainwave-controlled (EEG) artificial limb.</li>
+                    <li><strong>Underwater Drone:</strong> AI vision for human identification.</li>
+                    <li><strong>Intellectual Helmet:</strong> VR system and smart sensor for pilots.</li>
                 </ul>
             </section>
 
@@ -285,23 +232,71 @@
     </div>
 
     <script>
+        let scene, camera, renderer, stars, starGeo;
+        
+        function initThree() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+            camera.position.z = 1;
+            camera.rotation.x = Math.PI/2;
+
+            renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            starGeo = new THREE.BufferGeometry();
+            let positions = [];
+            for(let i=0; i<6000; i++) {
+                positions.push(Math.random() * 600 - 300);
+                positions.push(Math.random() * 600 - 300);
+                positions.push(Math.random() * 600 - 300);
+            }
+            starGeo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+
+            let sprite = new THREE.TextureLoader().load('https://threejs.org/examples/textures/sprites/disc.png');
+            let starMaterial = new THREE.PointsMaterial({
+                color: 0xaaaaaa,
+                size: 0.7,
+                map: sprite,
+                transparent: true
+            });
+
+            stars = new THREE.Points(starGeo, starMaterial);
+            scene.add(stars);
+
+            animate();
+        }
+
+        function animate() {
+            stars.rotation.y += 0.001;
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        initThree();
+
+        // Theme Toggle Logic
         const btn = document.getElementById("theme-toggle");
         btn.addEventListener("click", function() {
             if (document.body.getAttribute("data-theme") === "dark") {
                 document.body.removeAttribute("data-theme");
                 localStorage.setItem("theme", "light");
+                stars.material.color.setHex(0xaaaaaa);
             } else {
                 document.body.setAttribute("data-theme", "dark");
                 localStorage.setItem("theme", "dark");
+                stars.material.color.setHex(0x4da3ff);
             }
         });
 
-        // Load saved preference
         if (localStorage.getItem("theme") === "dark") {
             document.body.setAttribute("data-theme", "dark");
         }
     </script>
 </body>
 </html>
-
-
